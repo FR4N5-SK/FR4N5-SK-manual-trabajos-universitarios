@@ -15,4 +15,4 @@ El formato utilizado sigue el estándar de versionado semántico (SemVer).
 - Se realizaron cambios en README.md.
 - Se generó y completó el Pull Request.
 - Se fusionaron los cambios en la rama main.
-- Se actualizaron los issues y el tablero Kanban del proyecto.
+- Se actualizaron los issues y el tablero Kanban del proyecto
