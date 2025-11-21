@@ -1,103 +1,169 @@
- MANUAL DE BUENAS PRÁCTICAS PARA TRABAJOS UNIVERSITARIOS EN EQUIPO
+ Manual de Usuario – SIGO BACKEND
+Sistema de Gestión de Asistencia – Backend (FastAPI)
+ Introducción
 
-Este manual fue elaborado como parte de un proyecto académico cuyo objetivo es aprender a utilizar Git y GitHub como herramientas de colaboración, aplicándolas a la creación de documentos de manera organizada, eficiente y profesional.
+Este manual explica de manera sencilla y humana cómo instalar, ejecutar y utilizar el backend del sistema SIGO, un servicio desarrollado con FastAPI que permite registrar y consultar asistencias, gestionar bonos laborales y generar recibos.
 
-A continuación, se presentan las mejores prácticas recomendadas para trabajar en equipo, gestionar tareas, controlar versiones y mantener un flujo de trabajo ordenado.
+El objetivo es que cualquier persona —incluso sin mucha experiencia técnica— pueda levantar el proyecto sin problemas.
 
- 1. Organización del equipo
+ 1. Requisitos Previos
 
-Una buena organización inicial evita la mayoría de los problemas futuros. Se recomienda:
+Antes de comenzar, asegúrate de tener instalado:
 
-Definir roles claros entre los integrantes del equipo.
+ Python 3.10 o superior
 
-Establecer responsables de cada parte del trabajo.
+Para verificar tu versión:
 
-Utilizar un calendario con fechas realistas de entrega.
+python --version
 
-Mantener reuniones breves para revisar avances.
+ Git
+git --version
 
-Mantener una comunicación constante (WhatsApp, Discord, Teams o similar).
+ Visual Studio Code (opcional pero recomendado)
 
- 2. Gestión del trabajo con GitHub
+Sirve como editor de código.
 
-GitHub permite organizar las tareas de forma clara y visual.
+ 2. Clonar el Repositorio
 
-Para gestionar el trabajo correctamente:
+Abre una terminal en tu computadora y ejecuta:
 
-Cada integrante debe crear su propia rama para desarrollar su parte del manual.
+git clone https://github.com/<TU-USUARIO>/sigo-backend.git
+cd sigo-backend
 
-Crear issues para cada tarea o sección del documento.
 
-Utilizar el tablero tipo Kanban de GitHub Projects para visualizar el progreso (Por hacer → En proceso → Hecho).
+Esto descarga el proyecto y se ubica dentro de la carpeta.
 
-Asignar tareas a los miembros según el rol de cada uno.
+ 3. Crear el Entorno Virtual
 
- 3. Control de versiones
+Un entorno virtual evita conflictos con otras aplicaciones.
 
-El control de versiones permite ver el historial de cambios y mantener un trabajo ordenado.
+Crear entorno:
+python -m venv venv
 
-Buenas prácticas:
+Activarlo:
+En Windows:
+venv\Scripts\activate
 
-Realizar commits frecuentes y con mensajes claros.
+En Linux/Mac:
+source venv/bin/activate
 
-Crear pull requests para integrar cambios en la rama principal (main).
 
-Revisar el trabajo de los compañeros antes de aprobar un PR.
+Cuando esté activo verás algo así:
 
-Comentar ajustes o sugerencias directamente dentro de los PR.
+(venv) PS C:\…\sigo-backend>
 
-Resolver pequeños conflictos de merge de forma colaborativa.
+ 4. Instalar Dependencias
 
- 4. Buenas prácticas de escritura académica
+Ejecuta:
 
-Tener una base sólida de redacción hace que el trabajo final sea más profesional.
+pip install -r requirements.txt
 
-Recomendaciones:
 
-Usar formato APA en citas, referencias y bibliografía.
+Esto instalará FastAPI, Uvicorn y las demás librerías necesarias para el sistema.
 
-Mantener una estructura clara: Introducción – Desarrollo – Conclusión.
+ 5. Ejecutar el Servidor
 
-Escribir de forma formal pero comprensible.
+Con el entorno virtual activo:
 
-Evitar párrafos extremadamente largos.
+uvicorn main:app --reload
 
-Revisar ortografía antes de hacer un commit.
 
- 5. Versionado del documento
+Si todo va bien verás algo como:
 
-El documento debe llevar un control de versiones como cualquier proyecto técnico.
+INFO:     Uvicorn running on http://127.0.0.1:8000
 
-¿Qué hacer?
 
-Crear etiquetas (tags) para versiones importantes:
+Este será el servidor del backend.
 
-v1.0 – Versión inicial
+ 6. Endpoints Principales
 
-v1.1 – Ajustes menores
+Una vez el servidor esté levantado, entra aquí en tu navegador:
 
-v2.0 – Actualización completa
+http://127.0.0.1:8000/docs
 
-Documentar cada cambio en un archivo CHANGELOG.md.
+Ahí verás la documentación interactiva del sistema (Swagger UI).
 
-Registrar mejoras, correcciones y agregados.
+Endpoints importantes:
 
- 6. Entrega final
+POST /asistencia/registrar → Registrar asistencia
 
-Para completar el proyecto, el repositorio debe contener:
+GET /asistencia/listar → Consultar asistencias
 
-El manual final en formato Markdown (manual.md).
+POST /bonos/calcular → Calcular bono (alimentación, transporte, etc.)
 
-El manual en PDF exportado desde Markdown o Word.
+POST /recibo/generar → Generar recibo
 
-El historial completo de commits en GitHub.
+Puedes probar todo desde la misma página.
 
-El tablero del proyecto con todas las tareas en estado “Hecho”.
+ 7. Archivos Importantes
+Archivo	Explicación
+main.py	Punto de entrada del backend
+models/	Modelos Pydantic (estructuras de datos)
+services/	Lógica de negocio (cálculos de bonos, recibos, etc.)
+static/	Logo, plantillas u otros recursos
+manual.md	Este manual del sistema
+README.md	Información principal del repositorio
+ 8. Flujo Básico de Uso
 
-El archivo README.md explicando el propósito y contenido del repositorio.
+Abres terminal
 
- Conclusión
+Activás el entorno virtual
 
-Aplicar buenas prácticas de escritura y colaboración mediante GitHub no solo mejora la organización del trabajo académico, sino que prepara a los estudiantes para entornos profesionales donde estas herramientas son esenciales.
+Ejecutas uvicorn main:app --reload
 
-Este manual busca servir como guía clara, simple y útil para cualquier equipo universitario que desee trabajar de forma más ordenada y eficiente.
+Entras a http://127.0.0.1:8000/docs
+
+Registras asistencia
+
+Calculas bono
+
+Generas recibo
+
+Todo está automatizado y pensado para ser fácil de usar.
+
+ 9. Pruebas Sencillas
+ Registrar asistencia
+
+En /asistencia/registrar ejemplo de body:
+
+{
+  "cedula": "30555999",
+  "nombre": "Frank Mendez",
+  "fecha": "2025-11-21",
+  "hora": "08:15"
+}
+
+ Calcular bono
+
+En /bonos/calcular:
+
+{
+  "cedula": "30555999",
+  "dias_laborados": 20
+}
+
+ 10. Errores Comunes y Soluciones
+ "‘uvicorn’ no se reconoce como comando"
+
+ Ejecuta:
+
+pip install uvicorn
+
+ "Module not found"
+
+ Instalaste el proyecto sin activar el entorno.
+Actívalo y reinstala dependencias.
+
+ Swagger UI no carga
+
+ Revisa que el servidor esté encendido.
+
+11. Contacto / Soporte
+
+Este proyecto puede ser extendido, mejorado y mantenido fácilmente.
+Si presentas problemas, puedes abrir un Issue en GitHub o mejorar el proyecto mediante un Pull Request.
+
+ 12. Conclusión
+
+Este backend está pensado para ser simple, claro y funcional.
+Puedes adaptarlo, conectarlo a un frontend, integrarlo con una base de datos o añadir nuevos módulos según tu necesidad.
