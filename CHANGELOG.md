@@ -10,3 +10,9 @@ El formato utilizado sigue el estándar de versionado semántico (SemVer).
 - Creación del archivo manual.md.
 - Organización inicial de las carpetas del proyecto.
 - Configuración general para iniciar el trabajo en equipo con GitHub.
+## v1.1.0 – Integración y cierre del proyecto
+- Se creó la rama desarrollo-manual.
+- Se realizaron cambios en README.md.
+- Se generó y completó el Pull Request.
+- Se fusionaron los cambios en la rama main.
+- Se actualizaron los issues y el tablero Kanban del proyecto.
