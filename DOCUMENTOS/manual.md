@@ -167,3 +167,4 @@ Si presentas problemas, puedes abrir un Issue en GitHub o mejorar el proyecto me
 
 Este backend está pensado para ser simple, claro y funcional.
 Puedes adaptarlo, conectarlo a un frontend, integrarlo con una base de datos o añadir nuevos módulos según tu necesidad.
+Durante este proyecto se aplicaron buenas prácticas de Git y GitHub, incluyendo el uso de ramas, commits descriptivos, tableros Kanban, control de versiones, creación de issues y Pull Requests. El trabajo demostró cómo estas herramientas permiten organizar y colaborar de manera profesional en proyectos académicos.
